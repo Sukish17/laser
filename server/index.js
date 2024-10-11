@@ -11,7 +11,7 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: 'https://laser-client.vercel.app', // Replace with your frontend's URL
+    origin: 'https://laser-client.vercel.app/', // Replace with your frontend's URL
     credentials: true
 }));
 
