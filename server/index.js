@@ -16,23 +16,23 @@ app.use(cors({
 }));
 
 
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect("mongodb+srv://sukishkohli:Sukish17@cluster0.dqpo9.mongodb.net/DB?retryWrites=true&w=majority&appName=Cluster0")
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('Failed to connect to MongoDB', err));
 
 
 app.use(session({
-    secret: process.env.SESSION_SECRET,
+    secret: '12345',
     resave: false,
     saveUninitialized: true,
     store: MongoStore.create({
-        mongoUrl: process.env.MONGO_URI
+        mongoUrl:"mongodb+srv://sukishkohli:Sukish17@cluster0.dqpo9.mongodb.net/DB?retryWrites=true&w=majority&appName=Cluster0"
     }),
     cookie: { maxAge: 24 * 60 * 60 * 1000 } // 1 day
 }));
 
-app.listen(process.env.PORT, () => {
-    console.log(`Server is running on port ${process.env.PORT}`);
+app.listen(3001, () => {
+    console.log('Server is running on port 3001');
 });
 
 
