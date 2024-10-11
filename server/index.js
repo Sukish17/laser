@@ -11,28 +11,28 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: 'https://laser-client.vercel.app', // Replace with your frontend's URL
+    origin: 'http://localhost:3000', // Replace with your frontend's URL
     credentials: true
 }));
 
 
-mongoose.connect("mongodb+srv://sukishkohli:Sukish17@cluster0.dqpo9.mongodb.net/users?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('Failed to connect to MongoDB', err));
 
 
 app.use(session({
-    secret: '12345',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     store: MongoStore.create({
-        mongoUrl:"mongodb+srv://sukishkohli:Sukish17@cluster0.dqpo9.mongodb.net/users?retryWrites=true&w=majority&appName=Cluster0"
+        mongoUrl: process.env.MONGO_URI
     }),
     cookie: { maxAge: 24 * 60 * 60 * 1000 } // 1 day
 }));
 
-app.listen(3001, () => {
-    console.log('Server is running on port 3001');
+app.listen(process.env.PORT, () => {
+    console.log(`Server is running on port ${process.env.PORT}`);
 });
 
 
