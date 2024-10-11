@@ -12,7 +12,7 @@ function SignUp(){
 
     const handleSignup = (e) => {
         e.preventDefault();
-        axios.post("https://laser-server.vercel.app/?vercelToolbarCode=W-P3a66oJjXIoJh/signup", { name, email, password })
+        axios.post("https://laser-server.vercel.app/signup", { name, email, password })
             .then(result => {
                 if (result.status === 201) {
                     navigate("/login");
